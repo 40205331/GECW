@@ -54,6 +54,152 @@ void Level2Scene::Load() {
     // *********************************
   }
 
+  // Create Enemy
+  {
+	  auto enemy1 = makeEntity();
+	  enemy1->setPosition(ls::getTilePosition(ls::findTiles(ls::ENEMY)[1]) +
+		  Vector2f(0, 36));
+	  // *********************************
+	  // Add HurtComponent
+	  enemy1->addComponent<HurtComponent>();
+	  // Add ShapeComponent, Red 16.f Circle
+	  auto s = enemy1->addComponent<ShapeComponent>();
+	  s->setShape<sf::CircleShape>(16.f);
+	  s->getShape().setFillColor(Color::Red);
+	  s->getShape().setOrigin(16.f, 16.f);
+
+
+
+	  // Add EnemyAIComponent
+	  enemy1->addComponent<EnemyAIComponent>();
+	  // *********************************
+  }
+
+  // Create Enemy
+  {
+	  auto enemy2 = makeEntity();
+	  enemy2->setPosition(ls::getTilePosition(ls::findTiles(ls::ENEMY)[2]) +
+		  Vector2f(0, 48));
+	  // *********************************
+	  // Add HurtComponent
+	  enemy2->addComponent<HurtComponent>();
+	  // Add ShapeComponent, Red 16.f Circle
+	  auto s = enemy2->addComponent<ShapeComponent>();
+	  s->setShape<sf::CircleShape>(16.f);
+	  s->getShape().setFillColor(Color::Red);
+	  s->getShape().setOrigin(16.f, 16.f);
+
+
+
+	  // Add EnemyAIComponent
+	  enemy2->addComponent<EnemyAIComponent>();
+	  // *********************************
+  }
+
+  // Create Enemy
+  {
+	  auto enemy3 = makeEntity();
+	  enemy3->setPosition(ls::getTilePosition(ls::findTiles(ls::ENEMY)[3]) +
+		  Vector2f(0, 60));
+	  // *********************************
+	  // Add HurtComponent
+	  enemy3->addComponent<HurtComponent>();
+	  // Add ShapeComponent, Red 16.f Circle
+	  auto s = enemy3->addComponent<ShapeComponent>();
+	  s->setShape<sf::CircleShape>(16.f);
+	  s->getShape().setFillColor(Color::Red);
+	  s->getShape().setOrigin(16.f, 16.f);
+
+
+
+	  // Add EnemyAIComponent
+	  enemy3->addComponent<EnemyAIComponent>();
+	  // *********************************
+  }
+
+  // Create Enemy
+  {
+	  auto enemy4 = makeEntity();
+	  enemy4->setPosition(ls::getTilePosition(ls::findTiles(ls::ENEMY)[4]) +
+		  Vector2f(0, 72));
+	  // *********************************
+	  // Add HurtComponent
+	  enemy4->addComponent<HurtComponent>();
+	  // Add ShapeComponent, Red 16.f Circle
+	  auto s = enemy4->addComponent<ShapeComponent>();
+	  s->setShape<sf::CircleShape>(16.f);
+	  s->getShape().setFillColor(Color::Red);
+	  s->getShape().setOrigin(16.f, 16.f);
+
+
+
+	  // Add EnemyAIComponent
+	  enemy4->addComponent<EnemyAIComponent>();
+	  // *********************************
+  }
+
+  // Create Enemy
+  {
+	  auto enemy5 = makeEntity();
+	  enemy5->setPosition(ls::getTilePosition(ls::findTiles(ls::ENEMY)[5]) +
+		  Vector2f(0, 84));
+	  // *********************************
+	  // Add HurtComponent
+	  enemy5->addComponent<HurtComponent>();
+	  // Add ShapeComponent, Red 16.f Circle
+	  auto s = enemy5->addComponent<ShapeComponent>();
+	  s->setShape<sf::CircleShape>(16.f);
+	  s->getShape().setFillColor(Color::Red);
+	  s->getShape().setOrigin(16.f, 16.f);
+
+
+
+	  // Add EnemyAIComponent
+	  enemy5->addComponent<EnemyAIComponent>();
+	  // *********************************
+  }
+
+  // Create Enemy
+  {
+	  auto enemy6 = makeEntity();
+	  enemy6->setPosition(ls::getTilePosition(ls::findTiles(ls::ENEMY)[6]) +
+		  Vector2f(0, 96));
+	  // *********************************
+	  // Add HurtComponent
+	  enemy6->addComponent<HurtComponent>();
+	  // Add ShapeComponent, Red 16.f Circle
+	  auto s = enemy6->addComponent<ShapeComponent>();
+	  s->setShape<sf::CircleShape>(16.f);
+	  s->getShape().setFillColor(Color::Red);
+	  s->getShape().setOrigin(16.f, 16.f);
+
+
+
+	  // Add EnemyAIComponent
+	  enemy6->addComponent<EnemyAIComponent>();
+	  // *********************************
+  }
+
+  // Create Enemy
+  {
+	  auto enemy7 = makeEntity();
+	  enemy7->setPosition(ls::getTilePosition(ls::findTiles(ls::ENEMY)[7]) +
+		  Vector2f(0, 108));
+	  // *********************************
+	  // Add HurtComponent
+	  enemy7->addComponent<HurtComponent>();
+	  // Add ShapeComponent, Red 16.f Circle
+	  auto s = enemy7->addComponent<ShapeComponent>();
+	  s->setShape<sf::CircleShape>(16.f);
+	  s->getShape().setFillColor(Color::Red);
+	  s->getShape().setOrigin(16.f, 16.f);
+
+
+
+	  // Add EnemyAIComponent
+	  enemy7->addComponent<EnemyAIComponent>();
+	  // *********************************
+  }
   // Create Turret
   {
     auto turret = makeEntity();
@@ -65,6 +211,7 @@ void Level2Scene::Load() {
     s->getShape().setOrigin(16.f, 16.f);
     turret->addComponent<EnemyTurretComponent>();
   }
+
 
   // Add physics colliders to level tiles.
   {

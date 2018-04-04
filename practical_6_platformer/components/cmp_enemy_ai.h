@@ -13,3 +13,15 @@ public:
 
   EnemyAIComponent() = delete;
 };
+
+class EnemyAIComponent2 : public ActorMovementComponent {
+protected:
+	sf::Vector2f _direction;
+
+public:
+	void update(double dt) override;
+
+	explicit EnemyAIComponent2(Entity* p);
+
+	EnemyAIComponent2() = delete;
+};
