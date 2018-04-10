@@ -11,7 +11,6 @@ using namespace sf;
 static shared_ptr<Entity> player;
 
 void Level3Scene::Load() {
-  cout << "Scene 3 Load" << endl;
   ls::loadLevelFile("res/level_3.txt", 40.0f);
   auto ho = Engine::getWindowSize().y - (ls::getHeight() * 40.f);
   ls::setOffset(Vector2f(0, ho));
@@ -48,21 +47,12 @@ void Level3Scene::Load() {
 		  e->setPosition(pos);
 		  e->addComponent<PhysicsComponent>(false, Vector2f(40.f, 40.f));
 	  } 
-
-
-
-
-
-
-    // *********************************
   }
 
-  cout << " Scene 3 Load Done" << endl;
   setLoaded(true);
 }
 
 void Level3Scene::UnLoad() {
-  cout << "Scene 3 UnLoad" << endl;
   player.reset();
   ls::unload();
   Scene::UnLoad();
