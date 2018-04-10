@@ -12,7 +12,6 @@ using namespace sf;
 static shared_ptr<Entity> player;
 
 void Level1Scene::Load() {
-  cout << " Scene 1 Load" << endl;
   ls::loadLevelFile("res/level_1.txt", 40.0f);
 
   auto ho = Engine::getWindowSize().y - (ls::getHeight() * 40.f);
@@ -42,15 +41,11 @@ void Level1Scene::Load() {
     }
   }
 
-  //Simulate long loading times
-  std::this_thread::sleep_for(std::chrono::milliseconds(3000));
-  cout << " Scene 1 Load Done" << endl;
 
   setLoaded(true);
 }
 
 void Level1Scene::UnLoad() {
-  cout << "Scene 1 Unload" << endl;
   player.reset();
   ls::unload();
   Scene::UnLoad();
