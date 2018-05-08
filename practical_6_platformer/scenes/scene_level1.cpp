@@ -3,6 +3,7 @@
 #include "../components/cmp_sprite.h"
 #include "../game.h"
 #include <LevelSystem.h>
+#include <system_resources.h>
 #include <iostream>
 #include <thread>
 
@@ -16,7 +17,9 @@ void Level1Scene::Load() {
 
   auto ho = Engine::getWindowSize().y - (ls::getHeight() * 40.f);
   ls::setOffset(Vector2f(0, ho));
-
+  backGround_Music = Resources::get<Music>("retro_soundtrack01.ogg");
+  backGround_Music->play();
+  backGround_Music->setLoop(true);
   // Create player
   {
     player = makeEntity();
@@ -49,6 +52,8 @@ void Level1Scene::UnLoad() {
   player.reset();
   ls::unload();
   Scene::UnLoad();
+  backGround_Music->stop();
+  backGround_Music.reset();
 }
 
 void Level1Scene::Update(const double& dt) {

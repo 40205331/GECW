@@ -1,6 +1,7 @@
 #pragma once
 
 #include "cmp_physics.h"
+#include <SFML/Audio.hpp>
 class PlayerControlsComponent : public Component {
 protected:
 	float _groundspeed;
@@ -31,6 +32,8 @@ protected:
   float _groundspeed;
 
   bool isGrounded() const;
+  sf::SoundBuffer _buffer_jump;
+  sf::Sound _jump_sound;
 
 public:
   void update(double dt) override;

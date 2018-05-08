@@ -2,6 +2,7 @@
 #include "system_physics.h"
 #include <LevelSystem.h>
 #include <SFML/Window/Keyboard.hpp>
+#include "system_resources.h"
 
 using namespace std;
 using namespace sf;
@@ -61,6 +62,9 @@ void PlayerPhysicsComponent::update(double dt) {
       teleport(Vector2f(pos.x, pos.y - 2.0f));
       impulse(Vector2f(0, -6.f));
     }
+	_jump_sound.play();
+    _buffer_jump = *(Resources::get<SoundBuffer>("SFX_Jump_09.wav"));
+	_jump_sound.setBuffer(_buffer_jump);
   }
 
   //Are we in air?
