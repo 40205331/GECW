@@ -6,6 +6,7 @@ using namespace sf;
 
 using namespace Physics;
 
+// Eventaul problems: section 6.3.1 at p. 96
 void PhysicsComponent::update(double dt) {
   _parent->setPosition(invert_height(bv2_to_sv2(_body->GetPosition())));
   _parent->setRotation((180 / b2_pi) * _body->GetAngle());
@@ -31,13 +32,11 @@ PhysicsComponent::PhysicsComponent(Entity* p, bool dyn,
     b2FixtureDef FixtureDef;
     // Fixture properties
     // FixtureDef.density = _dynamic ? 10.f : 0.f;
-    FixtureDef.friction = _dynamic ? 0.1f : 0.8f;
-    FixtureDef.restitution = .2;
+		FixtureDef.friction = _dynamic ? 0.1f : 0.8f;
+		FixtureDef.restitution = .1;
     FixtureDef.shape = &Shape;
     // Add to body
     _fixture = _body->CreateFixture(&FixtureDef);
-    //_fixture->SetRestitution(.9)
-    FixtureDef.restitution = .2;
   }
 
   // An ideal Pod/capusle shape should be used for hte player,
@@ -83,6 +82,8 @@ void PhysicsComponent::setVelocity(const sf::Vector2f& v) {
 }
 
 b2Fixture* const PhysicsComponent::getFixture() const { return _fixture; }
+
+b2Body* const PhysicsComponent::getBody() const { return _body; }
 
 PhysicsComponent::~PhysicsComponent() {
   auto a = Physics::GetWorld();

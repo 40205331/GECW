@@ -6,9 +6,11 @@ using namespace std;
 
 MenuScene menu;
 SettingsScene settings;
+KeyMapScene KeyMap;
 Level1Scene level1;
 Level2Scene level2;
 Level3Scene level3;
+chresScene chres;
 
 int main() {
   Engine::Start(1280, 720, "Platformer",&menu);

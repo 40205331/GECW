@@ -2,10 +2,10 @@
 
 #include "engine.h"
 
-class KeyMapScene : public Scene {
+class chresScene : public Scene {
 public:
-	KeyMapScene() = default;
-  ~KeyMapScene() override = default;
+	chresScene() = default;
+  ~chresScene() override = default;
 
   void Load() override;
 
