@@ -7,11 +7,13 @@
 #include "scenes/scene_menu.h"
 #include "scenes/scene_settings.h"
 #include "scenes/scene_keymap.h"
+#include "scenes/scene_chres.h"
 
 extern MenuScene menu;
 extern Level1Scene level1;
 extern Level2Scene level2;
 extern Level3Scene level3;
+extern chresScene chres;
 extern SettingsScene settings;
-extern KeyMapScene keymap;
+extern KeyMapScene KeyMap;
 

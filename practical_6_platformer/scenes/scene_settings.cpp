@@ -4,12 +4,14 @@
 #include "../prefabs.h"
 #include "../components/cmp_text.h"
 #include "../components/cmp_button.h"
+//#include "../keys.h"
 
 using namespace std;
 using namespace sf;
 
 shared_ptr<Entity> btn_Back;
-shared_ptr<Entity> btn_res;
+shared_ptr<Entity> btn_chres;
+shared_ptr<Entity> btn_kmap;
 
 void SettingsScene::Load() {
 	{
@@ -18,8 +20,11 @@ void SettingsScene::Load() {
 		txt->setPosition({ (float)Engine::GetWindow().getSize().x / 2, 100.0f });
 	}
 
-	btn_res = create_button("Res");
-	btn_res->setPosition({ (float)Engine::GetWindow().getSize().x / 2, 240.0f });
+	btn_kmap = create_button("Remap controlls");
+	btn_kmap->setPosition({ (float)Engine::GetWindow().getSize().x / 2, 160.0f });
+
+	btn_chres = create_button("Change resolution");
+	btn_chres->setPosition({ (float)Engine::GetWindow().getSize().x / 2, 200.0f });
 
 	btn_Back = create_button("Back");
 	btn_Back->setPosition({ (float)Engine::GetWindow().getSize().x / 2, 280.0f });
@@ -33,13 +38,17 @@ void SettingsScene::Load() {
 void SettingsScene::Update(const double& dt) {
   // cout << "Menu Update "<<dt<<"\n";
 
-	if (btn_res->get_components<ButtonComponent>()[0]->isSelected())
+	if (btn_kmap->get_components<ButtonComponent>()[0]->isSelected())
 	{
-		Engine::ChangeScene(&menu);
+		Engine::ChangeScene(&KeyMap);
 	}
 	if (btn_Back->get_components<ButtonComponent>()[0]->isSelected())
 	{
 		Engine::ChangeScene(&menu);
+	}
+	if (btn_chres->get_components<ButtonComponent>()[0]->isSelected())
+	{
+		Engine::ChangeScene(&chres);
 	}
 
   Scene::Update(dt);
