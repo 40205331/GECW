@@ -34,7 +34,7 @@ void Level2Scene::Load() {
 
   // Create Enemy
   {
-    auto enemy = makeEntity();
+     auto enemy = makeEntity();
     enemy->setPosition(ls::getTilePosition(ls::findTiles(ls::ENEMY)[0]) +
                        Vector2f(0, 24));
     // *********************************

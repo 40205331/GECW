@@ -75,20 +75,20 @@ void Level3Scene::Update(const double& dt) {
 
   if (rocktime <= 0.f){
     rocktime  = 5.f;
-    auto rock = makeEntity();
-    rock->setPosition(ls::getTilePosition(ls::findTiles('r')[0]) +
+    auto enemy = makeEntity();
+    enemy->setPosition(ls::getTilePosition(ls::findTiles('n')[0]) +
                       Vector2f(0, 40) );
-    rock->addComponent<BulletComponent>(30.f);
-	rock->addComponent<HurtComponent>();
-    auto s = rock->addComponent<ShapeComponent>();
-    s->setShape<sf::CircleShape>(40.f);
-    s->getShape().setFillColor(Color::Cyan);
-    s->getShape().setOrigin(40.f, 40.f);
-    auto p = rock->addComponent<PhysicsComponent>(true, Vector2f(75.f, 75.f));
-    p->setRestitution(.4f);
-    p->setFriction(.0001f);
-    p->impulse(Vector2f(-3.f, 0));
-    p->setMass(1000000000.f);
+    enemy->addComponent<BulletComponent>(30.f);
+	enemy->addComponent<HurtComponent>();
+    auto s = enemy->addComponent<ShapeComponent>();
+    s->setShape<sf::CircleShape>(16.f);
+    s->getShape().setFillColor(Color::Red);
+    s->getShape().setOrigin(16.f, 16.f);
+    //auto p = enemy->addComponent<PhysicsComponent>(true, Vector2f(75.f, 75.f));
+    //p->setRestitution(.4f);
+    //p->setFriction(.0001f);
+    //p->impulse(Vector2f(-3.f, 0));
+    //p->setMass(1000000000.f);
   }
   
 }
