@@ -50,6 +50,7 @@ void MenuScene::Update(const double& dt) {
 	if (btn_Quit->get_components<ButtonComponent>()[0]->isSelected())
 	{
 		Engine::GetWindow().close();
+		//Engine::Start(850, 720, "GECW", &menu);
 	}
 
   Scene::Update(dt);

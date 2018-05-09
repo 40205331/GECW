@@ -38,11 +38,13 @@ void chresScene::Update(const double& dt) {
 
 	if (btn_win->get_components<ButtonComponent>()[0]->isSelected())
 	{
-		
+		Engine::GetWindow().close();
+		Engine::Start(1280, 720, "GECW", &chres);
 	}
 	if (btn_full->get_components<ButtonComponent>()[0]->isSelected())
 	{
-		
+		Engine::GetWindow().close();
+		Engine::GetWindow().create(sf::VideoMode(Engine::getWindowSize().x, Engine::getWindowSize().y), "GECW", sf::Style::Fullscreen);
 	}
 	if (btn_back1->get_components<ButtonComponent>()[0]->isSelected())
 	{
