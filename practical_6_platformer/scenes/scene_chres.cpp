@@ -10,6 +10,7 @@ using namespace sf;
 
 shared_ptr<Entity> btn_win;
 shared_ptr<Entity> btn_full;
+shared_ptr<Entity> btn_back1;
 
 void chresScene::Load() {
 	{
@@ -19,13 +20,15 @@ void chresScene::Load() {
 	}
 
 	btn_full = create_button("Full screen");
-	btn_full->setPosition({ (float)Engine::GetWindow().getSize().x / 2, 240.0f });
+	btn_full->setPosition({ (float)Engine::GetWindow().getSize().x / 2, 160.0f });
 
 	btn_win = create_button("Windowed");
-	btn_win->setPosition({ (float)Engine::GetWindow().getSize().x / 2, 280.0f });
+	btn_win->setPosition({ (float)Engine::GetWindow().getSize().x / 2, 200.0f });
 
+	btn_back1 = create_button("Back");
+	btn_back1->setPosition({ (float)Engine::GetWindow().getSize().x / 2, 280.0f });
 
-	Engine::GetWindow().setView(Engine::GetWindow().getDefaultView());
+    Engine::GetWindow().setView(Engine::GetWindow().getDefaultView());
 
   setLoaded(true);
 }
@@ -41,6 +44,9 @@ void chresScene::Update(const double& dt) {
 	{
 		
 	}
-
+	if (btn_back1->get_components<ButtonComponent>()[0]->isSelected())
+	{
+		Engine::ChangeScene(&settings);
+	}
   Scene::Update(dt);
 }

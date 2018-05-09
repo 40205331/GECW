@@ -26,7 +26,7 @@ void MenuScene::Load() {
   btn_Options = create_button("Options");
   btn_Options->setPosition({ (float)Engine::GetWindow().getSize().x / 2, 240.0f });
 
-  btn_Quit = create_button("Quiit");
+  btn_Quit = create_button("Quit");
   btn_Quit->setPosition({ (float)Engine::GetWindow().getSize().x / 2, 280.0f });
 
   Engine::GetWindow().setView(Engine::GetWindow().getDefaultView());
@@ -45,8 +45,11 @@ void MenuScene::Update(const double& dt) {
 	}
 	if (btn_Options->get_components<ButtonComponent>()[0]->isSelected())
 	{
-		Engine::ChangeScene(&settings);
-		
+		Engine::ChangeScene(&settings);	
+	}
+	if (btn_Quit->get_components<ButtonComponent>()[0]->isSelected())
+	{
+		Engine::GetWindow().close();
 	}
 
   Scene::Update(dt);
