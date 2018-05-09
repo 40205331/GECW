@@ -13,5 +13,6 @@ Level3Scene level3;
 chresScene chres;
 
 int main() {
-  Engine::Start(1280, 720, "Platformer",&menu);
+  Engine::Start(1280, 720, "GECW",&menu);
+ // sf::Window window(sf::VideoMode(1280, 720), "GECW", &menu);
 }

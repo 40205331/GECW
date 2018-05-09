@@ -17,7 +17,7 @@ void Level1Scene::Load() {
 
   auto ho = Engine::getWindowSize().y - (ls::getHeight() * 40.f);
   ls::setOffset(Vector2f(0, ho));
-  backGround_Music = Resources::get<Music>("retro_soundtrack01.ogg");
+  backGround_Music = Resources::get<Music>("background.wav");
   backGround_Music->play();
   backGround_Music->setLoop(true);
   // Create player
