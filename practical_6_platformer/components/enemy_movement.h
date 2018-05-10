@@ -1,11 +1,13 @@
 #pragma once
 
 #include "ecm.h"
+#include "cmp_actor_movement.h"
 
-class EnemyMovement : public Component
+class EnemyMovement : public ActorMovementComponent
 {
 protected:
 	float _speed;
+	sf::Vector2f _direction;
 
 public:
 	EnemyMovement() = delete;
