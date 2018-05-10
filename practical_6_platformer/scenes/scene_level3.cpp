@@ -5,6 +5,8 @@
 #include "../components/cmp_bullet.h"
 #include "../components/cmp_hurt_player.h"
 #include <LevelSystem.h>
+#include "../components/enemy_movement.h"
+#include "../components/cmp_actor_movement.h"
 #include <iostream>
 using namespace std;
 using namespace sf;
@@ -75,20 +77,43 @@ void Level3Scene::Update(const double& dt) {
 
   if (rocktime <= 0.f){
     rocktime  = 5.f;
-    auto rock = makeEntity();
-    rock->setPosition(ls::getTilePosition(ls::findTiles('r')[0]) +
+    auto enemy = makeEntity();
+    enemy->setPosition(ls::getTilePosition(ls::findTiles('n')[0]) +
                       Vector2f(0, 40) );
-    rock->addComponent<BulletComponent>(30.f);
-	rock->addComponent<HurtComponent>();
-    auto s = rock->addComponent<ShapeComponent>();
-    s->setShape<sf::CircleShape>(40.f);
-    s->getShape().setFillColor(Color::Cyan);
-    s->getShape().setOrigin(40.f, 40.f);
-    auto p = rock->addComponent<PhysicsComponent>(true, Vector2f(75.f, 75.f));
-    p->setRestitution(.4f);
-    p->setFriction(.0001f);
-    p->impulse(Vector2f(-3.f, 0));
-    p->setMass(1000000000.f);
+    enemy->addComponent<BulletComponent>(30.f);
+	enemy->addComponent<HurtComponent>();
+    auto s = enemy->addComponent<ShapeComponent>();
+    s->setShape<sf::CircleShape>(16.f);
+    s->getShape().setFillColor(Color::Red);
+    s->getShape().setOrigin(16.f, 16.f);
+	enemy->addComponent<EnemyMovement>();
+	enemy->addTag("enemy");
+	
+    //auto p = enemy->addComponent<PhysicsComponent>(true, Vector2f(75.f, 75.f));
+    //p->setRestitution(.4f);
+    //p->setFriction(.0001f);
+    //p->impulse(Vector2f(-3.f, 0));
+    //p->setMass(1000000000.f);
+  }
+
+  auto enemy_list = ents.find("enemy");
+  for (auto &e : enemy_list)
+  {
+	  auto sc = e->get_components<ShapeComponent>();
+	  auto mov = e->get_components<EnemyMovement>();
+	  float horizontal = 0.0f;
+	  float vertical = 0.0f;
+	  float dist_hor = player->getPosition().x - e->getPosition().x;
+	  float dist_vert = player->getPosition().y - e->getPosition().y;
+	  if (dist_hor < 0)
+		  horizontal--;
+	  else if (dist_hor > 0)
+		  horizontal++;
+	  if (dist_vert < 0)
+		  vertical--;
+	  else if (dist_vert > 0)
+		  vertical++;
+	  mov[0]->move(horizontal *0.1, vertical *0.1);
   }
   
 }
