@@ -23,10 +23,10 @@ void SettingsScene::Load() {
 	btn_kmap = create_button("Remap controlls");
 	btn_kmap->setPosition({ (float)Engine::GetWindow().getSize().x / 2, 160.0f });
 
-	btn_chres = create_button("Change resolution");
+	btn_chres = create_button("Back");
 	btn_chres->setPosition({ (float)Engine::GetWindow().getSize().x / 2, 200.0f });
 
-	btn_Back = create_button("Back");
+	btn_Back = create_button("Change resolution");
 	btn_Back->setPosition({ (float)Engine::GetWindow().getSize().x / 2, 280.0f });
 
 
@@ -44,11 +44,13 @@ void SettingsScene::Update(const double& dt) {
 	}
 	if (btn_Back->get_components<ButtonComponent>()[0]->isSelected())
 	{
-		Engine::ChangeScene(&menu);
+		//Engine::ChangeScene(&menu);
+		Engine::ChangeScene(&chres);
 	}
 	if (btn_chres->get_components<ButtonComponent>()[0]->isSelected())
 	{
-		Engine::ChangeScene(&chres);
+		//Engine::ChangeScene(&chres);
+		Engine::ChangeScene(&menu);
 	}
 
   Scene::Update(dt);
