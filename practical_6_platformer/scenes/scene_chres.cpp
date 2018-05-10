@@ -44,7 +44,8 @@ void chresScene::Update(const double& dt) {
 	if (btn_full->get_components<ButtonComponent>()[0]->isSelected())
 	{
 		Engine::GetWindow().close();
-		Engine::GetWindow().create(sf::VideoMode(Engine::getWindowSize().x, Engine::getWindowSize().y), "GECW", sf::Style::Fullscreen);
+		Engine::GetWindow().create(sf::VideoMode(Engine::getWindowSize().x, Engine::getWindowSize().y, 32), "GECW", sf::Style::Fullscreen);
+		Engine::ChangeScene(&menu);
 	}
 	if (btn_back1->get_components<ButtonComponent>()[0]->isSelected())
 	{

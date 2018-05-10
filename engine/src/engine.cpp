@@ -22,7 +22,6 @@ static RenderWindow* _window;
 void Loading_update(float dt, const Scene* const scn) {
   //  cout << "Eng: Loading Screen\n";
   if (scn->isLoaded()) {
-    cout << "Eng: Exiting Loading Screen\n";
     loading = false;
   } else {
     loadingspinner += 220.0f * dt;
@@ -96,9 +95,9 @@ void Engine::Start(unsigned int width, unsigned int height,
         window.close();
       }
     }
-    if (Keyboard::isKeyPressed(Keyboard::Escape)) {
-      window.close();
-    }
+   // if (Keyboard::isKeyPressed(Keyboard::Escape)) {
+    //  window.close();
+   // }
 
     window.clear();
     Update();
