@@ -2,6 +2,7 @@
 #include "../components/cmp_physics.h"
 #include "../components/cmp_player_physics.h"
 #include "../game.h"
+#include "../components/cmp_bullet_movement.h"
 #include "../components/cmp_bullet.h"
 #include "../components/cmp_hurt_player.h"
 #include <LevelSystem.h>
@@ -82,12 +83,15 @@ void Level3Scene::Update(const double& dt) {
                       Vector2f(0, 40) );
     enemy->addComponent<BulletComponent>(30.f);
 	enemy->addComponent<HurtComponent>();
+	//enemy->addComponent<PhysicsComponent>(false, Vector2f(8.f, 8.f));
     auto s = enemy->addComponent<ShapeComponent>();
     s->setShape<sf::CircleShape>(16.f);
     s->getShape().setFillColor(Color::Red);
     s->getShape().setOrigin(16.f, 16.f);
+	
 	enemy->addComponent<EnemyMovement>();
 	enemy->addTag("enemy");
+	
 	
     //auto p = enemy->addComponent<PhysicsComponent>(true, Vector2f(75.f, 75.f));
     //p->setRestitution(.4f);
@@ -101,6 +105,7 @@ void Level3Scene::Update(const double& dt) {
   {
 	  auto sc = e->get_components<ShapeComponent>();
 	  auto mov = e->get_components<EnemyMovement>();
+
 	  float horizontal = 0.0f;
 	  float vertical = 0.0f;
 	  float dist_hor = player->getPosition().x - e->getPosition().x;
