@@ -10,7 +10,7 @@ void EnemyMovement::update(double dt)
 	auto mov = _direction * (float)(dt * _speed);
 	mov.y += _direction.y * 16.f;
 	if (!validMove(_parent->getPosition() + mov)) {
-		_direction *= -1.f;
+		_direction *= 1.f;
 	}
 
 	move(_direction * (float)(dt * _speed));

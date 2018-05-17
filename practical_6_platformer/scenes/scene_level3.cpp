@@ -2,12 +2,13 @@
 #include "../components/cmp_physics.h"
 #include "../components/cmp_player_physics.h"
 #include "../game.h"
-#include "../components/cmp_bullet_movement.h"
+#include "../components/bullet_movement.h"
 #include "../components/cmp_bullet.h"
 #include "../components/cmp_hurt_player.h"
 #include <LevelSystem.h>
 #include "../components/enemy_movement.h"
 #include "../components/cmp_actor_movement.h"
+#include "../components/cmp_enemy_turret.h"
 #include <iostream>
 using namespace std;
 using namespace sf;
@@ -77,7 +78,7 @@ void Level3Scene::Update(const double& dt) {
   rocktime -= dt;
 
   if (rocktime <= 0.f){
-    rocktime  = 5.f;
+    rocktime  = 2.f;
     auto enemy = makeEntity();
     enemy->setPosition(ls::getTilePosition(ls::findTiles('n')[0]) +
                       Vector2f(0, 40) );
@@ -89,6 +90,7 @@ void Level3Scene::Update(const double& dt) {
     s->getShape().setFillColor(Color::Red);
     s->getShape().setOrigin(16.f, 16.f);
 	
+	enemy->addComponent<EnemyTurretComponent2>();
 	enemy->addComponent<EnemyMovement>();
 	enemy->addTag("enemy");
 	
@@ -118,7 +120,7 @@ void Level3Scene::Update(const double& dt) {
 		  vertical--;
 	  else if (dist_vert > 0)
 		  vertical++;
-	  mov[0]->move(horizontal *0.1, vertical *0.1);
+	  mov[0]->move(horizontal *0.05, vertical *0.05);
   }
   
 }
