@@ -9,6 +9,7 @@
 #include "components/cmp_button.h"
 #include "components/cmp_bullet.h"
 
+//creates buttons
 using namespace std;
 using namespace sf;
 

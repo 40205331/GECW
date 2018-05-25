@@ -1,3 +1,4 @@
+//include header files
 #include "scene_level3.h"
 #include "../components/cmp_physics.h"
 #include "../components/cmp_player_physics.h"
@@ -8,15 +9,16 @@
 #include <iostream>
 using namespace std;
 using namespace sf;
-
+//create player
 static shared_ptr<Entity> player;
-
+//load level elements
 void Level3Scene::Load() {
+	//load level tile map
   ls::loadLevelFile("res/level_3.txt", 40.0f);
   auto ho = Engine::getWindowSize().y - (ls::getHeight() * 40.f);
   ls::setOffset(Vector2f(0, ho));
 
-  // Create player
+  // load player
   {
     // *********************************
 	  player = makeEntity();
@@ -52,20 +54,19 @@ void Level3Scene::Load() {
 
   setLoaded(true);
 }
-
+//when complete, unload level
 void Level3Scene::UnLoad() {
   player.reset();
   ls::unload();
   Scene::UnLoad();
 }
-
-
-
+//update level throughouyt
 void Level3Scene::Update(const double& dt) {
   Scene::Update(dt);
   const auto pp = player->getPosition();
   if (ls::getTileAt(pp) == ls::END) {
     Engine::ChangeScene((Scene*)&level1);
+	//if player dies, restart level
   } else if (!player->isAlive()) {
     Engine::ChangeScene((Scene*)&level3);
   }
@@ -92,7 +93,7 @@ void Level3Scene::Update(const double& dt) {
   }
   
 }
-
+//render level
 void Level3Scene::Render() {
   ls::render(Engine::GetWindow());
   Scene::Render();

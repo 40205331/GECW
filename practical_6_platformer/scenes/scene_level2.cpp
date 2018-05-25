@@ -1,3 +1,4 @@
+//include header files
 #include "scene_level2.h"
 #include "../components/cmp_enemy_ai.h"
 #include "../components/cmp_enemy_turret.h"
@@ -9,14 +10,16 @@
 #include <iostream>
 using namespace std;
 using namespace sf;
-
+//create player
 static shared_ptr<Entity> player;
+//load level elements
 void Level2Scene::Load() {
+	//load levels tilemap
   ls::loadLevelFile("res/level_2.txt", 40.0f);
   auto ho = Engine::getWindowSize().y - (ls::getHeight() * 40.f);
   ls::setOffset(Vector2f(0, ho));
 
-  // Create player
+  // load player
   {
     // *********************************
 	  player = makeEntity();
@@ -79,7 +82,7 @@ void Level2Scene::Load() {
 	  auto enemy2 = makeEntity();
 	  enemy2->setPosition(ls::getTilePosition(ls::findTiles(ls::ENEMY)[2]) +
 		  Vector2f(0, 48));
-	  // *********************************
+	  // *****************************
 	  // Add HurtComponent
 	  enemy2->addComponent<HurtComponent>();
 	  // Add ShapeComponent, Red 16.f Circle
@@ -92,7 +95,7 @@ void Level2Scene::Load() {
 
 	  // Add EnemyAIComponent
 	  enemy2->addComponent<EnemyAIComponent>();
-	  // *********************************
+	  // **************************
   }
 
   // Create Enemy
@@ -100,7 +103,7 @@ void Level2Scene::Load() {
 	  auto enemy3 = makeEntity();
 	  enemy3->setPosition(ls::getTilePosition(ls::findTiles(ls::ENEMY)[3]) +
 		  Vector2f(0, 60));
-	  // *********************************
+	  // *************************
 	  // Add HurtComponent
 	  enemy3->addComponent<HurtComponent>();
 	  // Add ShapeComponent, Red 16.f Circle
@@ -134,7 +137,7 @@ void Level2Scene::Load() {
 
 	  // Add EnemyAIComponent
 	  enemy4->addComponent<EnemyAIComponent>();
-	  // *********************************
+	  // **********************************
   }
 
   // Create Enemy
@@ -224,26 +227,20 @@ void Level2Scene::Load() {
 		  e->addComponent<PhysicsComponent>(false, Vector2f(40.f, 40.f));
 	  }
 
-
-
-
-
-
-
     // *********************************
   }
 
   cout << " Scene 2 Load Done" << endl;
   setLoaded(true);
 }
-
+//unload level when complete
 void Level2Scene::UnLoad() {
   cout << "Scene 2 UnLoad" << endl;
   player.reset();
   ls::unload();
   Scene::UnLoad();
 }
-
+//upade level throughout
 void Level2Scene::Update(const double& dt) {
   Scene::Update(dt);
   const auto pp = player->getPosition();
@@ -253,7 +250,7 @@ void Level2Scene::Update(const double& dt) {
     Engine::ChangeScene((Scene*)&level2);
   }
 }
-
+//render level
 void Level2Scene::Render() {
   ls::render(Engine::GetWindow());
   Scene::Render();

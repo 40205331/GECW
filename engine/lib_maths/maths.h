@@ -2,8 +2,8 @@
 
 #include <SFML/System.hpp>
 #include <cmath>
-#include <iomanip>  // std::setprecision
-#include <iostream> // std::cout, std::fixed
+#include <iomanip>  /
+#include <iostream> 
 #include <sstream>
 #include <vector>
 

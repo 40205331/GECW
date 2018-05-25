@@ -10,16 +10,6 @@ map<std::string, Keyboard::Key> keys::_keyboardLookupTable;
 void keys::initialise()
 {
 	keys::SetKeyboardKey("Right", Keyboard::Right);
-	/*
-	Controls::SetKeyboardKey("Return to menu", Keyboard::Escape);
-	Controls::SetKeyboardKey("Enter", Keyboard::Space);
-	Controls::SetKeyboardKey("Sprint", Keyboard::Space);
-	Controls::SetKeyboardKey("Shoot", Keyboard::RShift);
-	Controls::SetKeyboardKey("Up", Keyboard::W);
-	Controls::SetKeyboardKey("Down", Keyboard::S);
-	Controls::SetKeyboardKey("Left", Keyboard::A);
-	Controls::SetKeyboardKey("Right", Keyboard::D);
-	*/
 }
 
 Keyboard::Key keys::GetKeyboardKey(string action)
