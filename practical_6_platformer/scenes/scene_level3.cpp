@@ -14,7 +14,7 @@ using namespace std;
 using namespace sf;
 
 static shared_ptr<Entity> player;
-static shared_ptr<Entity> enemies;
+vector<shared_ptr<Entity>> enemies;
 float fireTime = 0.0f;
 void Level3Scene::Load() {
 	ls::loadLevelFile("res/level_3.txt", 40.0f);
@@ -67,7 +67,7 @@ void Level3Scene::UnLoad() {
 
 
 void Level3Scene::Update(const double& dt) {
-	Scene::Update(dt);
+	
 	const auto pp = player->getPosition();
 	if (ls::getTileAt(pp) == ls::END) {
 		Engine::ChangeScene((Scene*)&level1);
@@ -76,11 +76,18 @@ void Level3Scene::Update(const double& dt) {
 		Engine::ChangeScene((Scene*)&level3);
 	}
 
+	sf::Event event;
+	while (Engine::GetWindow().pollEvent(event)) {
+		if (event.type == Event::Closed) {
+			Engine::GetWindow().close();
+		}
+	}
+
 	bool fired = false;
 	if (Keyboard::isKeyPressed(Keyboard::Space) && fireTime <= 0.0f)
 	{
 		fired = true;
-		fireTime = 0.5f;
+		fireTime = 4.0f;
 	}
 	if (fired = true)
 	{
@@ -93,6 +100,11 @@ void Level3Scene::Update(const double& dt) {
 		b->setShape<sf::CircleShape>(8.0f);
 		b->getShape().setFillColor(Color::Yellow);
 		b->getShape().setOrigin(8.0f, 8.0f);
+		
+	}
+	else if (fired != true)
+	{
+		cout << "fgsgs" << endl;
 	}
 
 
@@ -147,7 +159,7 @@ void Level3Scene::Update(const double& dt) {
 
 
 		
-		for (auto &b : bullet_list)
+		/*for (auto &b : bullet_list)
 		{
 			auto bul = b->get_components<ShapeComponent>();
 			if (bul[0]->getShape().getGlobalBounds().intersects(sc[0]->getShape().getGlobalBounds()))
@@ -157,7 +169,7 @@ void Level3Scene::Update(const double& dt) {
 				enemies.erase(enemies.begin() + enemyID);
 			}
 		}
-		enemyID++;
+		enemyID++;*/
 	}
 	fireTime -= dt;
 	Scene::Update(dt);
