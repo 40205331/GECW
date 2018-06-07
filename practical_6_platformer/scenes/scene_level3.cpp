@@ -67,7 +67,7 @@ void Level3Scene::UnLoad() {
 
 
 void Level3Scene::Update(const double& dt) {
-	
+
 	const auto pp = player->getPosition();
 	if (ls::getTileAt(pp) == ls::END) {
 		Engine::ChangeScene((Scene*)&level1);
@@ -83,14 +83,11 @@ void Level3Scene::Update(const double& dt) {
 		}
 	}
 
-	bool fired = false;
+	//bool fired = false;
 	if (Keyboard::isKeyPressed(Keyboard::Space) && fireTime <= 0.0f)
 	{
-		fired = true;
-		fireTime = 4.0f;
-	}
-	if (fired = true)
-	{
+		//fired = true;
+		fireTime = 0.5f;
 		auto bullet = makeEntity();
 		bullet->setPosition(player->getPosition());
 		bullet->addComponent<BulletComponent>();
@@ -102,12 +99,12 @@ void Level3Scene::Update(const double& dt) {
 		b->getShape().setOrigin(8.0f, 8.0f);
 		
 	}
-	else if (fired != true)
-	{
-		cout << "fgsgs" << endl;
-	}
+	//if (fired = true)
+	//{
+	
 
-
+//}
+	
 	static float rocktime = 0.0f;
 	rocktime -= dt;
 
@@ -118,7 +115,7 @@ void Level3Scene::Update(const double& dt) {
 			Vector2f(0, 40));
 		enemy->addComponent<BulletComponent>(30.f);
 		enemy->addComponent<HurtComponent>();
-		//enemy->addComponent<PhysicsComponent>(false, Vector2f(8.f, 8.f));
+		
 		auto s = enemy->addComponent<ShapeComponent>();
 		s->setShape<sf::CircleShape>(16.f);
 		s->getShape().setFillColor(Color::Red);
@@ -159,17 +156,15 @@ void Level3Scene::Update(const double& dt) {
 
 
 		
-		/*for (auto &b : bullet_list)
+		for (auto &b : bullet_list)
 		{
 			auto bul = b->get_components<ShapeComponent>();
 			if (bul[0]->getShape().getGlobalBounds().intersects(sc[0]->getShape().getGlobalBounds()))
 			{
-				e->setForDelete();
-				b->setForDelete();
-				enemies.erase(enemies.begin() + enemyID);
+			e->setForDelete();
+			b->setForDelete();
 			}
 		}
-		enemyID++;*/
 	}
 	fireTime -= dt;
 	Scene::Update(dt);

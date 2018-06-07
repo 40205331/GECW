@@ -14,7 +14,7 @@ void BulletMovement::update(double dt)
 	if (_fired)
 	{
 		horizontal++;
-		move(horizontal * _speed, 0);
+		move(horizontal * _speed * 0.25, 0);
 	}
 
 }
