@@ -252,6 +252,9 @@ void Level2Scene::Update(const double& dt) {
   } else if (!player->isAlive()) {
     Engine::ChangeScene((Scene*)&level2);
   }
+  if (sf::Keyboard::isKeyPressed(Keyboard::Escape)) {
+	  Engine::ChangeScene(&menu);
+  }
 }
 
 void Level2Scene::Render() {

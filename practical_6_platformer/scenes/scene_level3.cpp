@@ -70,7 +70,7 @@ void Level3Scene::Update(const double& dt) {
 
 	const auto pp = player->getPosition();
 	if (ls::getTileAt(pp) == ls::END) {
-		Engine::ChangeScene((Scene*)&level1);
+		Engine::ChangeScene(&menu);
 	}
 	else if (!player->isAlive()) {
 		Engine::ChangeScene((Scene*)&level3);
@@ -168,6 +168,10 @@ void Level3Scene::Update(const double& dt) {
 	}
 	fireTime -= dt;
 	Scene::Update(dt);
+
+	if (sf::Keyboard::isKeyPressed(Keyboard::Escape)) {
+		Engine::ChangeScene(&menu);
+	}
 }
 
 	void Level3Scene::Render() {
